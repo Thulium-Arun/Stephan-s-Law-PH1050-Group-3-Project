@@ -229,7 +229,7 @@ lid_results = compare_cooling_constants(
     k2=fit_parameters[with_lid_label]["k"],
     se2=fit_parameters[with_lid_label]["k_unc"],
     n1=len(results[without_lid_label][0]),
-    n2=len([with_lid_label][0]),
+    n2=len(results[with_lid_label][0]),
     increase_description=f"increase with {without_lid_label}"
 )
 
