@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import curve_fit
 from scipy.stats import probplot
+from scipy import stats
 
 
 def newton_cooling(t, Ta, T0, k):
@@ -68,6 +69,11 @@ for j, label in enumerate(labels):
 
     # Calculate fitted temperatures and residuals
     fit = newton_cooling(ts, *opt)
+    plt.plot(ts,fit,label = "Best Fit Curve")
+    plt.plot(ts,T, label = f"{label} Data")
+    plt.legend()
+    plt.savefig(f"Best Fit {label}.png")
+    plt.show()
     res = T - fit
 
     rmse = np.sqrt(np.mean(res**2))
@@ -127,9 +133,6 @@ for label, (ts, T, fit, res) in results.items():
 # 2.2 STATISTICAL COMPARISON OF COOLING CONSTANTS
 # Fan vs No Fan AND With Lid vs Without Lid
 # ============================================================
-
-import numpy as np
-from scipy import stats
 
 
 def compare_cooling_constants(label1, label2, k1, k2, se1, se2,
