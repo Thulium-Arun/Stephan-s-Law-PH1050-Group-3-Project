@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 df_raw = pd.read_csv('cooling_datasets.csv', header=None)
 
 # Room temperature is stored in row 0, column 1 for 'T_noisy_newton_nofan'
-room_temp = float(df_raw.iloc[0, 1]) 
+room_temp = float(df_raw.iloc[0, 1])
 
 # Column headers are in row 1
 headers = df_raw.iloc[1].values
@@ -55,7 +55,7 @@ print(f"  Cooling coefficient (k): {k_fit:.4f} min^-1")
 print(f"  Initial Temperature (T0): {T0_fit:.2f}°C")
 
 # Generate predictions across the *entire* time range (train + test)
-T_pred_newton = newton_model(t, k_fit, T0_fit) 
+T_pred_newton = newton_model(t, k_fit, T0_fit)
 
 # Dictionary to store RMSE scores for each model
 test_rmses = {}
@@ -73,10 +73,10 @@ for deg in range(1, 6):
     # Fit polynomial on training data only
     coeffs = np.polyfit(t_train, T_train, deg)
     poly_func = np.poly1d(coeffs)
-    
+
     # Predict across the full time series
     poly_predictions[deg] = poly_func(t)
-    
+
     # Calculate test RMSE on the test set
     poly_test_rmse = np.sqrt(np.mean((poly_func(t_test) - T_test)**2))
     test_rmses[f'Poly deg {deg}'] = poly_test_rmse
@@ -84,7 +84,7 @@ for deg in range(1, 6):
 
 
 # Choose a polynomial degree to compare (e.g., degree 3 or the best one)
-best_deg = 3 
+best_deg = 4
 
 plt.figure(figsize=(10, 6))
 
@@ -103,8 +103,8 @@ plt.xlabel('Time (minutes)')
 plt.ylabel('Temperature (°C)')
 plt.title('Part 3: Extrapolation Test - Newton vs. Polynomials')
 plt.legend()
-plt.grid(alpha=0.3)
-plt.show()
+plt.savefig('Extrapolation_T_noisy_newton_nofan.png', dpi=300, bbox_inches='tight')
+plt.close()
 
 #now similar for T_Noisy_fan
 
@@ -158,7 +158,7 @@ for deg in range(1, 6):
     coeffs = np.polyfit(t_train, T_train, deg)
     poly_func = np.poly1d(coeffs)
     poly_predictions[deg] = poly_func(t)
-    
+
     poly_test_rmse = np.sqrt(np.mean((poly_func(t_test) - T_test)**2))
     poly_rmses[deg] = poly_test_rmse
     print(f"Polynomial Degree {deg} Test RMSE: {poly_test_rmse:.4f}")
@@ -180,7 +180,8 @@ plt.ylabel('Temperature (°C)')
 plt.title('Part 3 Extrapolation Test: T_noisy_newton_fan')
 plt.legend()
 plt.grid(alpha=0.3)
-plt.show()
+plt.savefig('Extrapolation_T_noisy_newton_fan.png', dpi=300, bbox_inches='tight')
+plt.close()
 
 #now for T_noisy_stefans_law
 
@@ -234,7 +235,7 @@ for deg in range(1, 6):
     coeffs = np.polyfit(t_train, T_train, deg)
     poly_func = np.poly1d(coeffs)
     poly_predictions[deg] = poly_func(t)
-    
+
     poly_test_rmse = np.sqrt(np.mean((poly_func(t_test) - T_test)**2))
     poly_rmses[deg] = poly_test_rmse
     print(f"Polynomial Degree {deg} Test RMSE: {poly_test_rmse:.4f}")
@@ -256,7 +257,8 @@ plt.ylabel('Temperature (°C)')
 plt.title('Part 3 Extrapolation Test: T_noisy_stefans_law')
 plt.legend()
 plt.grid(alpha=0.3)
-plt.show()
+plt.savefig('Extrapolation_T_noisy_stefans_law.png', dpi=300, bbox_inches='tight')
+plt.close()
 
 #now for T_open_measured
 
@@ -309,7 +311,7 @@ for deg in range(1, 6):
     coeffs = np.polyfit(t_train, T_train, deg)
     poly_func = np.poly1d(coeffs)
     poly_predictions[deg] = poly_func(t)
-    
+
     poly_test_rmse = np.sqrt(np.mean((poly_func(t_test) - T_test)**2))
     poly_rmses[deg] = poly_test_rmse
     print(f"Polynomial Degree {deg} Test RMSE: {poly_test_rmse:.4f}")
@@ -331,7 +333,8 @@ plt.ylabel('Temperature (°C)')
 plt.title('Part 3 Extrapolation Test: T_open_measured')
 plt.legend()
 plt.grid(alpha=0.3)
-plt.show()
+plt.savefig('Extrapolation_T_open_measured.png', dpi=300, bbox_inches='tight')
+plt.close()
 
 #now for T_measured
 
@@ -384,7 +387,7 @@ for deg in range(1, 6):
     coeffs = np.polyfit(t_train, T_train, deg)
     poly_func = np.poly1d(coeffs)
     poly_predictions[deg] = poly_func(t)
-    
+
     poly_test_rmse = np.sqrt(np.mean((poly_func(t_test) - T_test)**2))
     poly_rmses[deg] = poly_test_rmse
     print(f"Polynomial Degree {deg} Test RMSE: {poly_test_rmse:.4f}")
@@ -406,7 +409,8 @@ plt.ylabel('Temperature (°C)')
 plt.title('Part 3 Extrapolation Test: T_measured')
 plt.legend()
 plt.grid(alpha=0.3)
-plt.show()
+plt.savefig('Extrapolation_T_measured.png', dpi=300, bbox_inches='tight')
+plt.close()
 
 ### plottingg all polynomial fitting on each dataset
 
@@ -469,4 +473,5 @@ for idx, col in enumerate(datasets, start=1):
     plt.legend(loc='best', fontsize=9)
     plt.grid(alpha=0.3)
     plt.tight_layout()
-    plt.show()
+    plt.savefig(f'All_Models_Fig_{idx}_{col}.png', dpi=300, bbox_inches='tight')
+    plt.close()

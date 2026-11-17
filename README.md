@@ -1,15 +1,15 @@
 # Stephan-s-Law-PH1050-Group-3-Project
 As part of our coursework, we are mandated to write this code and submit on github. This is the result of that.
 
-#Split up of Work:
+## Split up of Work:
 
-- Arun Subramanian (EP26B005): Simulated Data Generation, (1.3) Numerical Root Finding, Report Writing, Assignment of Work, Project Supervision.
+- Arun Subramanian (EP26B005): Simulated Data Generation, (1.3) Numerical Root Finding, Report Writing, Project Supervision.
 - Baavesh MV (EP26B007): (1.2) Convergence Study
-- Mishka Singh (EP26B017): (2.1) Data and Statistics
+- Mishka Singh (EP26B017): (2.1) Data and Statistics, Report Writing
 - Shreyansh (EP26B029): (3) Polynomial Fitting
 - Tharun Karthick (EP26B036): Real Data Collection
 - Ekarshi (PH26B003): (1.1) Euler and RK4 Steps 
-- Jayadeep (CE24B073): (2.2) Data and Statistics
+- Jayadeep (CE24B073): (2.2) Data and Statistics, Report Writing
 
 #How to Run Code:
 
@@ -74,7 +74,7 @@ Dependencies:
 Output: Q-Q Graphs for each data set in cooling_datasets.csv, Residual Histogram and Scatterplot. 
 
 
-### "3 Polynomial Fitting.py"
+### 3 Polynomial Fitting.py
 
 `python "3 Polynomial Fitting.py"`
 
@@ -85,7 +85,7 @@ Dependencies:
 - Pandas
 
 Output:
-
+Graphs of polynomials, degree 1-5 and Newton's Best fit trained on first third of data, extrapolated to remaining data.  
 
 
 
